@@ -57,7 +57,7 @@ class MenuG(Menu):
         self.radio.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageG(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -109,7 +109,7 @@ class MenuGA(Menu):
         self.label.grid(column=0, row=0)
         self.scale_frame.grid(column=0, row=1)
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -171,7 +171,7 @@ class MenuGAA(Menu):
         self.radio.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -238,7 +238,7 @@ class MenuGAAA(Menu):
         self.check_frame.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAAA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -285,7 +285,7 @@ class MenuGAAB1(Menu):
         self.label.grid(column=0, row=0)
         self.entry_frame.grid(column=0, row=1)
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAAB1(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -343,7 +343,7 @@ class MenuGAAB2(Menu):
         self.attack.grid(column=0, row=2, sticky='nsew')
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAAB2(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -410,7 +410,7 @@ class MenuGAAB3(Menu):
         self.check_frame.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAAB3(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -468,7 +468,7 @@ class MenuGAB1(Menu):
         self.attack.grid(column=0, row=2, sticky='nsew')
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAB1(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -515,7 +515,7 @@ class MenuGAB2(Menu):
         self.label.grid(column=0, row=0)
         self.entry_frame.grid(column=0, row=1)
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAB2(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -573,7 +573,7 @@ class MenuGAB3(Menu):
         self.attack.grid(column=0, row=2, sticky='nsew')
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAB3(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -640,7 +640,7 @@ class MenuGAB4(Menu):
         self.check_frame.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGAB4(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -690,7 +690,7 @@ class MenuGB(Menu):
         self.label.grid(column=0, row=0)
         self.entry_frame.grid(column=0, row=1)
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGB(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -757,7 +757,7 @@ class MenuGBA(Menu):
         self.check_frame.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -795,7 +795,7 @@ class MenuGBAA(Menu):
         self.submit.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBAA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -833,7 +833,7 @@ class MenuGBANoA(Menu):
         self.submit.grid(column=0, row=1)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBANoA(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -891,7 +891,7 @@ class MenuGBB1(Menu):
         self.attack.grid(column=0, row=2, sticky='nsew')
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBB1(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -946,7 +946,7 @@ class MenuGBB2(Menu):
         self.label.grid(column=0, row=0)
         self.scale_frame.grid(column=0, row=1)
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBB2(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -977,7 +977,7 @@ class MenuGBB2A(Menu):
         self.label.grid(column=0, row=0)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBB2A(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -1007,7 +1007,7 @@ class MenuGBB2B(Menu):
         self.label.grid(column=0, row=0)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBB2B(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -1036,7 +1036,7 @@ class MenuGBB2C(Menu):
         self.label.grid(column=0, row=0)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageGBB2C(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -1066,7 +1066,7 @@ class MenuWin(Menu):
         self.label.grid(column=0, row=0)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageWin(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
@@ -1096,7 +1096,7 @@ class MenuLose(Menu):
         self.label.grid(column=0, row=0)
 
         # Make label wrap text dynamically according to width of frame
-        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width - 20))
 
 class PageLose(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
