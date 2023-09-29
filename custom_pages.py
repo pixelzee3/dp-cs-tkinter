@@ -4,6 +4,8 @@ import tkinter as tk
 from tkinter import ttk
 
 
+# * Test Page 1 ============================================================================================
+
 class TestMenu1(Menu):
     def __init__(self, parent, reset, select):
         super().__init__(parent, reset, select)
@@ -24,6 +26,9 @@ class TestPage1(Page):
         TestMenu1(self, reset, select)
 
 
+# * Test Page 2 ============================================================================================
+
+
 class TestMenu2(Menu):
     def __init__(self, parent, reset_function, select):
         super().__init__(parent, reset_function, select)
@@ -41,4 +46,25 @@ class TestPage2(Page):
     
     def create_page(self, reset_function, select):
         ImageMain(self, 'images/model 3.jpg')
+        TestMenu2(self, reset_function, select)
+
+
+# * G ============================================================================================
+
+class MenuG(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+    
+    def create_widgets(self, select):
+        self.red_bg = ttk.Label(self, background='red')
+    
+    def create_layout(self):
+        self.red_bg.pack(expand=True, fill='both')
+
+class PageG(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/G.png')
         TestMenu2(self, reset_function, select)
