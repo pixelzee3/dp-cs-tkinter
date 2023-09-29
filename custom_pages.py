@@ -127,7 +127,7 @@ class MenuGA(Menu):
         if self.scale_value.get() > 0.5:
             select('GAA')
         else:
-            select('GAB')
+            select('GAB1')
 
     def create_widgets(self, select):
         # define scale frame, scale variable, and submit button
@@ -361,7 +361,6 @@ class MenuGAAB2(Menu):
         # set health. if health is dead then next page
         self.health.set(new_health)
         if self.health.get() == 0 :
-            # TODO: Page must be updated
             select('GAAB3')
 
     def create_widgets(self, select):
@@ -370,7 +369,7 @@ class MenuGAAB2(Menu):
 
         # define health bar
         self.health_frame = ttk.Frame(self)
-        self.health_label = ttk.Label(self.health_frame, text='Health:')
+        self.health_label = ttk.Label(self.health_frame, text='Villager health:')
         self.health_bar = ttk.Progressbar(self.health_frame, variable=self.health, length=400, maximum=1)
         self.attack = ttk.Button(self, text='Click here to attack!', command=lambda: self.on_attack(select))
 
@@ -401,7 +400,7 @@ class PageGAAB2(Page):
 
 # * GAAA ==========================================================================================
 
-class MenuGAAA(Menu):
+class MenuGAAB3(Menu):
     def __init__(self, parent, reset_function, select):
         super().__init__(parent, reset_function, select)
 
@@ -441,7 +440,7 @@ class MenuGAAA(Menu):
         self.check_food = ttk.Checkbutton(self.check_frame, text="Steal the food", variable=self.checked_food, command=self.on_check)
         
         # define text
-        self.label = ttk.Label(self, text='Billy visits the village and finds a chest. What should he steal from it?', font='Calibri 16')
+        self.label = ttk.Label(self, text='Billy successfully kills the villager. He loots his body; what should he steal?', font='Calibri 16')
 
     def create_layout(self):
         # pack things inside check frame
@@ -457,10 +456,68 @@ class MenuGAAA(Menu):
         # Make label wrap text dynamically according to width of frame
         self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
 
-class PageGAAA(Page):
+class PageGAAB3(Page):
     def __init__(self, parent, reset: Callable, select: Callable):
         super().__init__(parent, reset, select)
     
     def create_page(self, reset_function, select):
-        ImageMain(self, 'images/GAAA.png')
-        MenuGAAA(self, reset_function, select)
+        ImageMain(self, 'images/GAAB3.png')
+        MenuGAAB3(self, reset_function, select)
+
+
+# * GAB1 ========================================================================================
+
+class MenuGAB1(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+
+        # define grid
+        self.columnconfigure(0, weight=1, uniform='a')
+        self.rowconfigure((0, 1, 2), weight=1, uniform='a')
+
+    # select pages according to selection
+    def on_attack(self, select):
+        # reduce health by 7.2%
+        new_health = self.health.get() - 0.072
+
+        if new_health < 0:
+            new_health = 0
+        
+        # set health. if health is dead then next page
+        self.health.set(new_health)
+        if self.health.get() == 0 :
+            select('GAB2')
+
+    def create_widgets(self, select):
+        # health variable
+        self.health = tk.DoubleVar(value=1)
+
+        # define health bar
+        self.health_frame = ttk.Frame(self)
+        self.health_label = ttk.Label(self.health_frame, text='Pig health:')
+        self.health_bar = ttk.Progressbar(self.health_frame, variable=self.health, length=400, maximum=1)
+        self.attack = ttk.Button(self, text='Click here to attack!', command=lambda: self.on_attack(select))
+
+        # define text
+        self.label = ttk.Label(self, text='Billy did not drink enough water. He gets tired and must eat a pig to recuperate energy. Kill the pig!', font='Calibri 16')
+
+    def create_layout(self):
+        # put label and health bar on frame
+        self.health_label.pack()
+        self.health_bar.pack()
+
+        # put all on menu
+        self.label.grid(column=0, row=0)
+        self.health_frame.grid(column=0, row=1)
+        self.attack.grid(column=0, row=2, sticky='nsew')
+
+        # Make label wrap text dynamically according to width of frame
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+
+class PageGAB1(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/GAB1.png')
+        MenuGAB1(self, reset_function, select)

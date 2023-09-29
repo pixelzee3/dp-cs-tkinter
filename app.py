@@ -3,7 +3,7 @@ from tkinter import ttk
 from typing import Tuple, Dict
 from ctypes import windll
 from pages import Page
-from custom_pages import PageG, PageGA, PageGAA, PageGAAA, PageGAAB1, PageGAAB2, TestPage1, TestPage2
+from custom_pages import PageG, PageGA, PageGAA, PageGAAA, PageGAAB1, PageGAAB2, PageGAAB3, PageGAB1, TestPage1, TestPage2
 
 # fix high DPI blurriness in Windows
 windll.shcore.SetProcessDpiAwareness(1)
@@ -24,7 +24,8 @@ class App(tk.Tk):
             'GAAA': PageGAAA,
             'GAAB1': PageGAAB1,
             'GAAB2': PageGAAB2,
-            'GAB': TestPage2,
+            'GAAB3': PageGAAB3,
+            'GAB1': PageGAB1,
             'GB': TestPage2,
         }
 
