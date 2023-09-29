@@ -6,22 +6,22 @@ from PIL import Image, ImageTk
 
 
 class Menu(ttk.Frame, ABC):
-    def __init__(self, parent, reset_function: Callable):
+    def __init__(self, parent, reset: Callable, select: Callable):
         super().__init__(parent)
 
-        self.create_widgets()
+        self.create_widgets(select)
         self.create_layout()
-        self.create_reset_button(reset_function)
+        self.create_reset_button(reset)
         
         self.grid(row=0, column=0, columnspan=3, sticky='nsew')
 
-    def create_reset_button(self, reset_function):
-        reset = ttk.Button(self, text='Reset', command=reset_function)
+    def create_reset_button(self, reset):
+        reset = ttk.Button(self, text='Reset', command=reset)
         reset.place(relx=1, rely=1, anchor='se')
         reset.lift()
     
     @abstractmethod
-    def create_widgets(self):
+    def create_widgets(self, select):
         # * Place widgets here
         # self.label = ttk.Label(self, background='red')
         pass
@@ -31,6 +31,7 @@ class Menu(ttk.Frame, ABC):
         # * Place widgets here
         # self.label.pack(expand=True, fill='both')
         pass
+
 
 
 class ImageMain(ttk.Frame):
@@ -72,14 +73,13 @@ class ImageMain(ttk.Frame):
         self.canvas.create_image(int(event.width / 2), int(event.height / 2), anchor = 'center', image=self.resized_tk)
 
 class Page(ttk.Frame, ABC):
-    def __init__(self, parent, reset_function: Callable):
+    def __init__(self, parent, reset: Callable, select: Callable):
         super().__init__(parent)
         
         self.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9), weight=1, uniform='a')
-        self.rowconfigure(0, weight=1, uniform='a')
+        self.rowconfigure(0, weight=1, uniform='b')
         
-        self.create_menu(reset_function)
-        self.create_image()
+        self.create_page(reset, select)
 
         self.place(x=0, y=0, relheight=1, relwidth=1)
     
@@ -87,15 +87,12 @@ class Page(ttk.Frame, ABC):
         self.tkraise()
 
     @abstractmethod
-    def create_image(self):
+    def create_page(self, reset, select):
         # ? How to implement?
+        
         # * Create an instance of an implementation of the ImageMain class like so
         # ImageMain('path/to/image')
-        pass
 
-    @abstractmethod
-    def create_menu(self, reset_function):
-        # ? How to implement?
         # * Create an instance of an implementation of the Menu class like so
-        # Menu(self, reset_function)
+        # Menu(self, reset, select)
         pass

@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from typing import Tuple
+from typing import Tuple, Dict
 from ctypes import windll
+from pages import Page
 from custom_pages import TestPage1, TestPage2
 
 # fix high DPI blurriness in Windows
@@ -16,16 +17,22 @@ class App(tk.Tk):
         self.geometry(f'{geometry[0]}x{geometry[1]}')
         self.minsize(minsize[0], minsize[1])
         self.state('zoomed')
+        self.pages: Dict[str, Page] = {
+            'g': TestPage1(self, self.reset, self.select),
+            'test2': TestPage2(self, self.reset, self.select)
+        }
 
-        # widgets
-        self.page1 = TestPage1(self, self.reset_button_test)
-        self.page2 = TestPage2(self, self.reset_button_test)
-        
+        self.reset()
+
         # run the app
         self.mainloop()
 
-    def reset_button_test(self):
-        self.page1.lift()
+    def reset(self):
+        # put genesis page on screen
+        self.pages['g'].lift()
+
+    def select(self, message: str):
+        self.pages[message].lift()
 
 
 
