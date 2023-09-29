@@ -374,7 +374,7 @@ class MenuGAAB2(Menu):
         self.attack = ttk.Button(self, text='Click here to attack!', command=lambda: self.on_attack(select))
 
         # define text
-        self.label = ttk.Label(self, text='The villager does not care about what you said! He attacks you. Fight back!', font='Calibri 16')
+        self.label = ttk.Label(self, text='The villager does not care about what Billy said! He attacks you. Fight back!', font='Calibri 16')
 
     def create_layout(self):
         # put label and health bar on frame
@@ -787,7 +787,7 @@ class MenuGBA(Menu):
         self.check_food = ttk.Checkbutton(self.check_frame, text="Buy the food", variable=self.checked_food, command=self.on_check)
         
         # define text
-        self.label = ttk.Label(self, text='The random dude seems to like how you presented yourself. He offers you to buy some things from him. What should you buy?', font='Calibri 16')
+        self.label = ttk.Label(self, text='The random dude seems to like how Billy presented himself. He offers Billy to buy some things from him. What should Billy buy?', font='Calibri 16')
 
     def create_layout(self):
         # pack things inside check frame
