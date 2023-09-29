@@ -521,3 +521,50 @@ class PageGAB1(Page):
     def create_page(self, reset_function, select):
         ImageMain(self, 'images/GAB1.png')
         MenuGAB1(self, reset_function, select)
+
+
+# * GAB2 ===========================================================================================
+
+class MenuGAB2(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+
+        # define grid
+        self.columnconfigure(0, weight=1, uniform='a')
+        self.rowconfigure((0, 1), weight=1, uniform='a')
+    
+
+    # select page
+    def on_submit(self, select):
+        select('GAB3')
+
+    def create_widgets(self, select):
+        # define entry frame, text variable, and submit button
+        self.text = tk.StringVar()
+        self.entry_frame = ttk.Frame(self)
+        self.submit = ttk.Button(self.entry_frame, text='Submit', command=lambda: self.on_submit(select))
+
+        # define entry
+        self.entry = ttk.Entry(self.entry_frame, textvariable=self.text)
+
+        # define text
+        self.label = ttk.Label(self, text='The pig owner confronts Billy! What should he say to the pig owner?', font='Calibri 16')
+
+    def create_layout(self):
+        # put button and scale on scale frame
+        self.entry.pack()
+        self.submit.pack()
+
+        # put label and scale frame on menu
+        self.label.grid(column=0, row=0)
+        self.entry_frame.grid(column=0, row=1)
+        # Make label wrap text dynamically according to width of frame
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+
+class PageGAB2(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/GAB2-3.png')
+        MenuGAB2(self, reset_function, select)
