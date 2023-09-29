@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
-class TestMenu(Menu):
+class TestMenu1(Menu):
     def __init__(self, parent, reset_function):
         super().__init__(parent, reset_function)
     
@@ -15,7 +15,7 @@ class TestMenu(Menu):
         self.green_bg.pack(expand=True, fill='both')
 
 
-class TestPage(Page):
+class TestPage1(Page):
     def __init__(self, parent, reset_function: Callable):
         super().__init__(parent, reset_function)
     
@@ -23,4 +23,25 @@ class TestPage(Page):
         ImageMain(self, 'images/model 3.jpg')
 
     def create_menu(self, reset_function):
-        TestMenu(self, reset_function)
+        TestMenu1(self, reset_function)
+
+
+class TestMenu2(Menu):
+    def __init__(self, parent, reset_function):
+        super().__init__(parent, reset_function)
+    
+    def create_widgets(self):
+        self.red_bg = ttk.Label(self, background='red')
+    
+    def create_layout(self):
+        self.red_bg.pack(expand=True, fill='both')
+
+class TestPage2(Page):
+    def __init__(self, parent, reset_function: Callable):
+        super().__init__(parent, reset_function)
+    
+    def create_image(self):
+        ImageMain(self, 'images/model 3.jpg')
+
+    def create_menu(self, reset_function):
+        TestMenu2(self, reset_function)

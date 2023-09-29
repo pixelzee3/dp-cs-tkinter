@@ -82,6 +82,9 @@ class Page(ttk.Frame, ABC):
         self.create_image()
 
         self.place(x=0, y=0, relheight=1, relwidth=1)
+    
+    def lift(self):
+        self.tkraise()
 
     @abstractmethod
     def create_image(self):

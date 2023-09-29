@@ -2,13 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 from typing import Tuple
 from ctypes import windll
-from custom_pages import TestPage
+from custom_pages import TestPage1, TestPage2
 
 # fix high DPI blurriness in Windows
 windll.shcore.SetProcessDpiAwareness(1)
-
-def reset_button_test():
-    print("Reset button clicked!")
 
 
 class App(tk.Tk):
@@ -21,10 +18,14 @@ class App(tk.Tk):
         self.state('zoomed')
 
         # widgets
-        TestPage(self, reset_button_test)
-
+        self.page1 = TestPage1(self, self.reset_button_test)
+        self.page2 = TestPage2(self, self.reset_button_test)
+        
         # run the app
         self.mainloop()
+
+    def reset_button_test(self):
+        self.page1.lift()
 
 
 
