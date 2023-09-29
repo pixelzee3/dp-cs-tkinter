@@ -110,3 +110,55 @@ class PageG(Page):
     def create_page(self, reset_function, select):
         ImageMain(self, 'images/G.png')
         MenuG(self, reset_function, select)
+
+# * GA ===========================================================================================
+
+class MenuGA(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+
+        # define grid
+        self.columnconfigure(0, weight=1, uniform='a')
+        self.rowconfigure((0, 1), weight=1, uniform='a')
+    
+
+    # select pages according to selection
+    def on_submit(self, select):
+        if self.scale_value.get() > 0.5:
+            select('GAA')
+        else:
+            select('GAB')
+
+    def create_widgets(self, select):
+        # define scale frame, scale variable, and submit button
+        self.scale_value = tk.DoubleVar(value=0)
+        self.scale_frame = ttk.Frame(self)
+        self.submit = ttk.Button(self.scale_frame, text='Submit', command=lambda: self.on_submit(select))
+
+        self.scale = ttk.Scale(
+            self.scale_frame, 
+            length=300,
+            variable=self.scale_value,
+        )
+
+        # define text
+        self.label = ttk.Label(self, text='He finds a well. How much from it should he drink?', font='Calibri 16')
+
+    def create_layout(self):
+        # put button and scale on scale frame
+        self.scale.pack()
+        self.submit.pack()
+
+        # put label and scale frame on menu
+        self.label.grid(column=0, row=0)
+        self.scale_frame.grid(column=0, row=1)
+        # Make label wrap text dynamically according to width of frame
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+
+class PageGA(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/GA.png')
+        MenuGA(self, reset_function, select)
