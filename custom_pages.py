@@ -568,3 +568,61 @@ class PageGAB2(Page):
     def create_page(self, reset_function, select):
         ImageMain(self, 'images/GAB2-3.png')
         MenuGAB2(self, reset_function, select)
+
+
+# * GAB3 ========================================================================================
+
+class MenuGAB3(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+
+        # define grid
+        self.columnconfigure(0, weight=1, uniform='a')
+        self.rowconfigure((0, 1, 2), weight=1, uniform='a')
+
+    # select pages according to selection
+    def on_attack(self, select):
+        # reduce health by 7.2%
+        new_health = self.health.get() - 0.072
+
+        if new_health < 0:
+            new_health = 0
+        
+        # set health. if health is dead then next page
+        self.health.set(new_health)
+        if self.health.get() == 0 :
+            select('GAB4')
+
+    def create_widgets(self, select):
+        # health variable
+        self.health = tk.DoubleVar(value=1)
+
+        # define health bar
+        self.health_frame = ttk.Frame(self)
+        self.health_label = ttk.Label(self.health_frame, text='Pig owner health:')
+        self.health_bar = ttk.Progressbar(self.health_frame, variable=self.health, length=400, maximum=1)
+        self.attack = ttk.Button(self, text='Click here to attack!', command=lambda: self.on_attack(select))
+
+        # define text
+        self.label = ttk.Label(self, text="The pig owner doesn't care about what Billy said; he wants to kill him! Fight back!", font='Calibri 16')
+
+    def create_layout(self):
+        # put label and health bar on frame
+        self.health_label.pack()
+        self.health_bar.pack()
+
+        # put all on menu
+        self.label.grid(column=0, row=0)
+        self.health_frame.grid(column=0, row=1)
+        self.attack.grid(column=0, row=2, sticky='nsew')
+
+        # Make label wrap text dynamically according to width of frame
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+
+class PageGAB3(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/GAB2-3.png')
+        MenuGAB3(self, reset_function, select)
