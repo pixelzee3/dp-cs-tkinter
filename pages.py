@@ -16,7 +16,7 @@ class Menu(ttk.Frame, ABC):
         self.grid(row=0, column=0, columnspan=3, sticky='nsew')
 
     def create_reset_button(self, reset_function):
-        reset = ttk.Button(self, text='Button', command=reset_function)
+        reset = ttk.Button(self, text='Reset', command=reset_function)
         reset.place(relx=1, rely=1, anchor='se')
         reset.lift()
     
