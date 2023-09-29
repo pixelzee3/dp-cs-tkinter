@@ -375,7 +375,7 @@ class MenuGAAB2(Menu):
         self.attack = ttk.Button(self, text='Click here to attack!', command=lambda: self.on_attack(select))
 
         # define text
-        self.label = ttk.Label(self, text='Billy had just woke up after his plane crashed in this mysterious island. Now, he must find a hidden gem in this island to teleport his way back home. Which way should he go?', font='Calibri 16')
+        self.label = ttk.Label(self, text='The villager does not care about what you said! He attacks you. Fight back!', font='Calibri 16')
 
     def create_layout(self):
         # put label and health bar on frame
@@ -397,3 +397,70 @@ class PageGAAB2(Page):
     def create_page(self, reset_function, select):
         ImageMain(self, 'images/GAAB2.png')
         MenuGAAB2(self, reset_function, select)
+
+
+# * GAAA ==========================================================================================
+
+class MenuGAAA(Menu):
+    def __init__(self, parent, reset_function, select):
+        super().__init__(parent, reset_function, select)
+
+        # define grid
+        self.columnconfigure(0, weight=1, uniform='a')
+        self.rowconfigure((0, 1), weight=1, uniform='a')
+    
+    # if at least one item is stolen, enable button
+    def on_check(self):
+        if self.checked_gem.get() or self.checked_money.get() or self.checked_food.get():
+            self.submit['state'] = 'enabled'
+        else:
+            self.submit['state'] = 'disabled'
+
+    # select pages according to selection
+    def on_submit(self, select):
+        # TODO: May need updating!
+        if self.checked_gem.get():
+            select('win')
+        else:
+            select('lose')
+
+    def create_widgets(self, select):
+        # define check frame, checked variables, and submit button
+        self.check_frame = ttk.Frame(self)
+        self.checked_gem = tk.BooleanVar(value=False)
+        self.checked_money = tk.BooleanVar(value=False)
+        self.checked_food = tk.BooleanVar(value=False)
+        self.submit = ttk.Button(self.check_frame, text='Submit', command=lambda: self.on_submit(select))
+
+        # disable button initially
+        self.submit['state'] = 'disabled'
+
+        # define check buttons
+        self.check_gem = ttk.Checkbutton(self.check_frame, text="Steal the gem", variable=self.checked_gem, command=self.on_check)
+        self.check_money = ttk.Checkbutton(self.check_frame, text="Steal the money", variable=self.checked_money, command=self.on_check)
+        self.check_food = ttk.Checkbutton(self.check_frame, text="Steal the food", variable=self.checked_food, command=self.on_check)
+        
+        # define text
+        self.label = ttk.Label(self, text='Billy visits the village and finds a chest. What should he steal from it?', font='Calibri 16')
+
+    def create_layout(self):
+        # pack things inside check frame
+        self.check_gem.pack()
+        self.check_money.pack()
+        self.check_food.pack()
+        self.submit.pack()
+
+        # put label and pack frame on menu
+        self.label.grid(column=0, row=0)
+        self.check_frame.grid(column=0, row=1)
+
+        # Make label wrap text dynamically according to width of frame
+        self.bind('<Configure>', lambda event: self.label.configure(wraplength=event.width))
+
+class PageGAAA(Page):
+    def __init__(self, parent, reset: Callable, select: Callable):
+        super().__init__(parent, reset, select)
+    
+    def create_page(self, reset_function, select):
+        ImageMain(self, 'images/GAAA.png')
+        MenuGAAA(self, reset_function, select)
