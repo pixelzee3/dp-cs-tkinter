@@ -13,7 +13,7 @@ class Menu(ttk.Frame, ABC):
         self.create_layout()
         self.create_reset_button(reset)
         
-        self.grid(row=0, column=0, columnspan=3, sticky='nsew')
+        self.place(anchor='nw', relx=0, rely=0, relwidth=0.3, relheight=1)
 
     def create_reset_button(self, reset):
         reset = ttk.Button(self, text='Reset', command=reset)
@@ -45,7 +45,7 @@ class ImageMain(ttk.Frame):
 
         self.create_canvas()
 
-        self.grid(row=0, column=3, columnspan=7, sticky='nsew')
+        self.place(anchor='nw', relx=0.3, rely=0, relwidth=0.7, relheight=1)
 
     def create_canvas(self):
         # create canvas
@@ -76,9 +76,6 @@ class Page(ttk.Frame, ABC):
     def __init__(self, parent, reset: Callable, select: Callable):
         super().__init__(parent)
         
-        # create grid for page
-        self.columnconfigure((0, 1, 2, 3, 4, 5, 6, 7, 8, 9), weight=1, uniform='a')
-        self.rowconfigure(0, weight=1, uniform='b')
         
         # put page elements
         self.create_page(reset, select)

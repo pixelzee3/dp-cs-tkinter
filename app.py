@@ -3,7 +3,7 @@ from tkinter import ttk
 from typing import Tuple, Dict
 from ctypes import windll
 from pages import Page
-from custom_pages import PageG, TestPage2
+from custom_pages import PageG, TestPage1, TestPage2
 
 # fix high DPI blurriness in Windows
 windll.shcore.SetProcessDpiAwareness(1)
@@ -18,8 +18,9 @@ class App(tk.Tk):
         self.minsize(minsize[0], minsize[1])
         self.state('zoomed')
         self.pages: Dict[str, Page] = {
-            'g': PageG(self, self.reset, self.select),
-            'test2': TestPage2(self, self.reset, self.select)
+            'G': PageG(self, self.reset, self.select),
+            'GA': TestPage1(self, self.reset, self.select),
+            'GB': TestPage2(self, self.reset, self.select),
         }
 
         self.reset()
@@ -29,7 +30,7 @@ class App(tk.Tk):
 
     def reset(self):
         # put genesis page on screen
-        self.pages['g'].lift()
+        self.pages['G'].lift()
 
     def select(self, message: str):
         self.pages[message].lift()
